@@ -1,0 +1,118 @@
+.titan-one-regular {
+    font-family: "Titan One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+main {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+header {
+    width: 100%;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+
+section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    color: var(--text);
+}
+
+/* Form */
+form {
+    border: 2px solid;
+    font-family: Arial;
+    border-radius: 15px;
+    text-align: center;
+    padding-bottom: 20px;
+    background-color: var(--grey);
+    color: var(--text);
+    width: 50vw;
+}
+
+.buttonTag {
+    margin-bottom: 5px;
+    color: var(--text);
+    font-family: Arial;
+}
+
+.settingsBtn:hover {
+    background-color: var(--button-hover);
+}
+
+button {
+    background: var(--calendar);
+    color: var(--text);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease, transform 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+#fileImport,
+#bgUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#fileImport input,
+#bgUpload input {
+    display: block;
+    margin: 8px auto;
+    width: auto;
+    position: relative;
+}
+
+#bg-preview-container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    padding: 15px;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}

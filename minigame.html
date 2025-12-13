@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Morgan, Thomas, Logan">
+    <title>Mini Game Page</title>
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="minigame/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header aria-label="Header">
+        <h1><a href="index.html" class="site-link" accesskey="h">NextUp Sports</a></h1>
+        <nav>
+            <ul>
+                <li><a href="settings.html" accesskey="s" class="translate">Settings</a></li>
+                <li><a href="about.html" accesskey="a" class="translate">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main aria-label="Main">
+        <h1>How well do you know your favorite sports?</h1>
+
+        <button id="startBtn">Start Quiz</button>
+
+        <div id="stat-container">
+            <span id="category-count">Categories Selected: 0</span>
+            <span id="current-streak">Streak 🔥0</span>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions and answers will be injected here later -->
+        </div>
+    </main>
+    <footer aria-label="Footer">
+        <p class="translate">&copy; Givens, Wagner, Cherry</p>
+    </footer>
+    <script type="module" src="minigame/script.js"></script>
+    <script src="js/language.js" defer></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+</body>
+
+</html>

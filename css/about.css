@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 10px;
+    height: 100vh;
+    display: flex;                /* NEW */
+    flex-direction: column;       /* NEW */
+    align-items: center;          /* NEW */
+    justify-content: flex-start;  /* NEW */
+    text-align: center;
+}
+
+.mini-btn {
+    display: inline-block;
+    font-family: Arial, sans-serif !important;
+    padding: 8px 20px;            /* smaller height */
+    margin-top: 40px;
+    background: var(--calendar);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;              /* slightly smaller */
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.25s ease;
+}
+
+.mini-btn:hover {
+    background: var(--button-hover);
+    transform: translateY(-3px);
+}

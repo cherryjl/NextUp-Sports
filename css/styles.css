@@ -1,0 +1,449 @@
+.light-mode {
+    --main: rgb(255, 87, 34);
+    --calendar: rgb(255, 193, 34);
+    --aside: rgb(213, 205, 205);
+    --day: rgb(255, 255, 153);
+    --game: rgba(255, 255, 255, 0.8);
+    --text: black;
+    --alt-text: black;
+    --button-hover: rgb(255, 193, 34, .85);
+    --border: rgb(0, 0, 0);
+    --filter: #fafafa;
+    --filter-inner: rgba(252, 254, 254, 0.85);
+    --filter-border: rgb(160, 158, 158);
+}
+
+.darker-mode {
+    --main: rgb(9, 9, 9);
+    --calendar: rgb(35, 34, 31);
+    --aside: rgb(81, 76, 75);
+    --day: rgba(62, 62, 46, 0.296);
+    --game: rgba(255, 255, 255, 0.332);
+    --text: rgb(230, 219, 219);
+    --alt-text: rgb(150, 150, 121);
+    --button-hover: rgba(54, 53, 49, 0.85);
+    --border: black;
+    --filter: #1f1a1a;
+    --filter-inner: rgba(64, 67, 60, 0.85);
+    --filter-border: rgb(0, 0, 0);
+}
+
+.morgan-mode {
+    --main: rgb(155, 226, 240);
+    --calendar: rgba(214, 251, 247, 0.941);
+    --aside: rgb(200, 233, 250);
+    --day: rgba(134, 176, 204, 0.502);
+    --game: rgba(255, 255, 255, 0.222);
+    --text: rgb(54, 51, 78);
+    --alt-text: rgb(54, 51, 78);
+    --button-hover: rgba(252, 254, 254, 0.85);
+    --border: rgb(0, 0, 0);
+    --filter:  rgba(255, 255, 255, 0.443);
+    --filter-inner: rgba(255, 255, 255, 0.443);
+    --filter-border: rgba(163, 163, 163, 0.673);
+}
+
+.cool-green-mode {
+    --main: rgb(87, 232, 104);
+    --calendar: rgb(87, 232, 104);
+    --aside: rgb(87, 232, 104);
+    --day: rgba(108, 143, 126, 0.502);
+    --game: rgba(255, 255, 255, 0.222);
+    --text: rgb(54, 51, 78);
+    --alt-text: rgb(54, 51, 78);
+    --button-hover: rgba(252, 254, 254, 0.85);
+    --border: rgb(0, 0, 0);
+    --filter:  rgba(255, 255, 255, 0.443);
+    --filter-inner: rgba(255, 255, 255, 0.443);
+    --filter-border: rgba(163, 163, 163, 0.673);
+}
+
+.dark-mode {
+    --main: rgb(72, 16, 6);
+    --calendar: rgba(77, 56, 8, 0.941);
+    --aside: rgb(52, 54, 55);
+    --day: rgba(134, 176, 204, 0.502);
+    --game: rgba(84, 83, 15, 0.8);
+    --text: rgb(255, 255, 255);
+    --alt-text: rgb(255, 255, 255);
+    --button-hover: rgba(252, 254, 254, 0.85);
+    --border: rgb(0, 0, 0);
+    --filter: #4f4b4b;
+    --filter-inner: rgba(51, 57, 57, 0.85);
+    --filter-border: rgb(0, 0, 0);
+}
+
+.titan-one-regular {
+    font-family: "Titan One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Use border-box sizing to make width/height calculations include padding/border */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html,
+body {
+    font-family: Impact, Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--main);
+    color: var(--border);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Main */
+
+main {
+    background-color: var(--main);
+    display: flex;
+    flex: 1 1 auto;
+    /* take remaining space below header */
+    min-height: 0;
+    /* allow children to not force overflow */
+}
+
+/* Aside */
+
+aside {
+  background-color: var(--aside);
+  border-right: 2px solid var(--border);
+  width: 30vw;
+  min-width: 250px;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  color: var(--text);
+
+  position: sticky;
+  top: 0;
+  max-height: calc(100vh - 70px); /* subtract header height */
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Aside scrollbar */
+aside::-webkit-scrollbar {
+    width: 6px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+aside::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* filter button looks cool */
+#filterGames {
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    border: none;
+    padding: 10px 24px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    flex-shrink: 0;
+    width: auto;
+
+    /* Sparkle */
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.25),
+        inset 0 1px 3px rgba(255, 255, 255, 0.4);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        background 0.3s ease;
+}
+
+#filterGames:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.35),
+        inset 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+#filterGames:active {
+    transform: scale(0.97);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.indexBtn {
+    width: 50px;
+    align-items: center;
+    margin: 10px;
+    color: var(--text);
+}
+
+#printCalendar {
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    flex-shrink: 0;
+    width: auto;
+
+    /* Sparkle */
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.25),
+        inset 0 1px 3px rgba(255, 255, 255, 0.4);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        background 0.3s ease;
+}
+
+#printCalendar:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.35),
+        inset 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+#printCalendar:active {
+    transform: scale(0.97);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Header */
+
+header {
+    background-color: var(--main);
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* margin-bottom: 10px; */
+    border-bottom: 3px solid;
+}
+
+header h1 {
+    color: var(--text);
+    font-size: 32px;
+}
+
+header h1 a.site-link {
+    color: var(--text);
+    text-decoration: none;
+    font-family: inherit;
+    /* keeps Titan One or Impact font */
+    font-size: inherit;
+}
+
+header h1 a.site-link:hover {
+    text-decoration: underline;
+}
+
+header ul a {
+    color: var(--text);
+    font-size: 20px;
+    text-decoration: none;
+}
+
+header ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+header ul a:hover {
+    text-decoration: underline;
+}
+
+nav {
+    display: flex;
+}
+
+/* Calendar */
+
+#calendar {
+    background-color: var(--calendar);
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    /* let calendar fill remaining space inside main without using vw/vh which can cause overflow */
+    flex: 1 1 auto;
+    margin: 10px;
+    display: flex;
+    min-height: 0;
+    /* allow flex children to scroll internally if needed */
+    flex-wrap: wrap;
+    overflow: auto;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Calendar scroll bar */
+#calendar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#calendar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+#calendar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+
+footer {
+    text-align: center;
+    background-color: var(--aside);
+    color: var(--text);
+}
+
+#favSports {
+  max-width: 400px; /* optional — keeps the section tidy */
+  margin: 0 auto;
+}
+
+#favSports details {
+  margin-bottom: 10px;
+  border: 1px solid var(--filter-border);
+  border-radius: 8px;
+  background-color: var(--filter);
+  padding: 0.5em 1em;
+  color: var(--alt-text);
+}
+
+/* Remove the default triangle and align all summaries consistently */
+#favSports summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding-left: 0;         /* ensure consistent left alignment */
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Replace default marker with your own aligned arrow */
+#favSports summary::marker {
+  display: none; /* hide default marker */
+}
+
+#favSports summary::before {
+  content: "▶";
+  font-size: 0.9em;
+  margin-right: 8px;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when open */
+#favSports details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.league-options {
+  margin-top: 6px;
+  padding-left: 22px; /* consistent indentation for all checkboxes */
+}
+
+#favSports label {
+  margin-left: 4px;
+}
+
+/* Container inside details stacks rows vertically */
+#favSports details div {
+    display: flex;
+    flex-direction: column;  /* stack each row vertically */
+    align-items: flex-start; /* left-align rows */
+    padding-left: 0;
+    margin: 0;
+}
+
+/* Each checkbox + label pair sits horizontally */
+#favSports details div > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* vertically center checkbox with text */
+    margin-bottom: 4px; /* small gap between rows */
+}
+
+/* Optional: small spacing between checkbox and label */
+#favSports details div > div input[type="checkbox"] {
+    margin-right: 6px;
+}
+
+/* Main Sports dropdown */
+#sportsDropdown {
+    padding: 1.2em;              /* extra room */
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+/* Inner dropdowns (Basketball, Baseball, etc.) */
+#sportsDropdown > details {
+    background-color: var(--filter-inner);   /* slightly darker than #fafafa */
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    margin: 8px 0;
+    border: 1px solid var(--filter-border);
+}
+
+@media (max-width: 480px) {
+
+    main {
+        flex-direction: column;
+        min-height: auto;         /* important */
+    }
+
+    aside {
+        width: 100%;
+        min-width: 0;
+        max-height: none;         /* override desktop constraint */
+        overflow: visible;        /* allow details to expand naturally */
+        position: relative;
+        border-right: none;
+        border-bottom: 2px solid var(--border);
+        color: var(--text);
+    }
+
+    #calendar {
+        flex: none;               /* prevent shrinking to zero */
+        width: 100%;
+
+        /* NEW: background settings */
+        background-size: cover;       /* scale image proportionally to fill calendar */
+        background-repeat: no-repeat; /* don't tile */
+        background-position: center;  /* center the image */
+        background-attachment: fixed; /* optional: keeps image stationary while scrolling */
+    }
+}

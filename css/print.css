@@ -1,0 +1,63 @@
+@media print {
+
+    /* Hide site not needed elements */
+    header,
+    nav,
+    aside,
+    .filters,
+    .controls,
+    .no-print {
+        display: none;
+    }
+
+    #calendar {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0.25in;
+        background: var(--calendar);
+        color: var(--border);
+        box-shadow: none;
+    }
+
+    body {
+        background: var(--main);
+        color: var(--border);
+        font-size: 12pt;
+        line-height: 1.2;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #days {
+        display: block;
+    }
+
+    #days .day {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 0 0 0.15in 0;
+        padding: 0.06in;
+        border: 1px solid #ccc;
+        background: var(--day);
+        color: #000;
+    }
+
+    h1,
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    @page {
+        size: auto;
+        margin: 0.4in;
+    }
+
+    * {
+        background: transparent;
+        box-shadow: none;
+        transition: none;
+    }
+}

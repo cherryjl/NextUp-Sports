@@ -1,0 +1,335 @@
+/* Magnifying Glass icon for button */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+
+/* Default calendar container */
+#calendar {
+    background-color: var(--calendar);
+    border: 2px solid black;
+    border-radius: 20px;
+    flex: 1 1 auto;
+    margin: 10px;
+    display: flex;
+    min-height: 0;
+    flex-wrap: wrap;
+    overflow: auto;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Days container (default flex/grid) */
+#days {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Day fade-in animation */
+@keyframes dayFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------- Grid/List View Toggle ---------------- */
+
+/* Grid view (default) */
+body[data-view-mode="grid"] #calendar {
+    display: flex;
+}
+
+body[data-view-mode="grid"] #days {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* List view */
+body[data-view-mode="list"] #calendar {
+    /* Keep the calendar as a flex child so it fills the remaining width
+       (same behavior as grid view). Individual days will be stacked inside
+       the #days container. */
+    display: flex;
+    flex: 1 1 auto; /* fill remaining width like grid view */
+    margin: 10px;
+}
+
+body[data-view-mode="list"] #days {
+    display: block;
+    margin: 0; /* let children span full width */
+    width: 100%;
+    padding: 8px 10px; /* inner spacing so .day isn't flush to edges */
+}
+
+body[data-view-mode="list"] .day {
+    /* Make each day fill the calendar width and behave like a flexible
+       column so inner content determines height (no inner scroll). */
+    width: 100%;
+    max-width: none; /* remove centered max-width so it can span */
+    margin: 10px 0; /* full-width list rows — vertical spacing only */
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex; /* allow inner elements to stack and stretch */
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    height: auto; /* grow to fit content */
+    max-height: none; /* remove previous cap */
+    overflow: visible; /* show all inner games without scrollbar */
+    background-color: var(--day);
+    box-sizing: border-box;
+}
+
+/* ---------------- Default Day/Box Styles ---------------- */
+
+.day {
+    background-color: var(--day);
+    width: 175px;
+    height: 135px;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: dayFadeIn 0.35s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
+}
+
+.day h3 {
+    font-family: Arial;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    color: var(--text);
+}
+
+.day .game {
+    background: var(--game);
+    border-radius: 8px;
+    padding: 4px;
+    margin: 4px 0;
+    width: 100%;
+    color: var(--alt-text);
+    transition: background-color 0.3s ease;
+}
+
+.day .teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.day .teams img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.day .teams p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.day .meta {
+    font-size: 0.7rem;
+    color: var(--alt-text);
+}
+
+/* Center the date/time text inside each game card when in list view */
+body[data-view-mode="list"] .day .game .meta {
+    text-align: center;
+    width: 100%;
+}
+
+.day:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Scrollbar style */
+.day::-webkit-scrollbar {
+    width: 6px;
+}
+
+.day::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* ---------------- Day Header & Expand Button ---------------- */
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 1px;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+.expand-btn {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.expand-btn:hover {
+    background-color: #eee;
+    transform: scale(1.05);
+}
+
+/* ---------------- Modal Styling ---------------- */
+
+#day-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#day-modal.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f44;
+    border: none;
+    color: white;
+    font-size: 22px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+#close-modal:hover {
+    background: #d22;
+}
+
+/* Blur background when modal is open */
+body.blurred main,
+body.blurred header {
+    filter: blur(5px);
+}
+
+/* Inside modal - spacing and separators between games */
+.modal-content .game {
+    background: #e2e1e1;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin: 10px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.modal-content .game:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.modal-content .teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.modal-content .meta {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 4px;
+}
+
+.modal-content h2, 
+.modal-content h3 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Loading indicator styles */
+.day .day-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #333;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.day .spinner {
+    border: 4px solid #ddd;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 6px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---------------- Calendar Background Image Support ---------------- */
+#calendar {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease-in-out, background-color 0.3s ease;;
+}

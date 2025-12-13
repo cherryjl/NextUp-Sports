@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Morgan, Thomas, Logan">
+    <title>NextUp-Sports</title>
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/days.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+</head>
+
+<script src="js/main.js" defer></script>
+
+<body>
+    <header aria-label="Header">
+        <h1><a href="index.html" class="site-link" accesskey="h">NextUp Sports</a></h1>
+        <nav>
+            <ul>
+                <li><a href="settings.html" accesskey="s" class="translate">Settings</a></li>
+                <li><a href="about.html" accesskey="a" class="translate">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main aria-label="Main">
+        <aside aria-label="The aside">
+            <form>
+                <!-- Maybe need to do leagues instead of sports, idk -->
+                <section id="favSports" aria-label="Form choice number 1">
+                    <h3 class="translate">Pick which sports you want to view:</h3>
+
+                    <!-- Creates a drop down menu for each sport category -->
+                    <details id="sportsDropdown">
+                        <summary class="translate">Sports</summary>
+                        <details>
+                            <summary class="translate">Basketball</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="nba" name="nba" value="nba">
+                                    <label for="nba">NBA</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="euroleague" name="euroleague" value="euroleague bb">
+                                    <label for="euroleague">Euroleague</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="australian bb" name="australian bb"
+                                        value="australian nbl">
+                                    <label for="australian bb">Australian NBL</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Baseball</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="mlb" name="mlb" value="mlb">
+                                    <label for="mlb">MLB</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="kbo league" name="kbo league" value="kbo league">
+                                    <label for="kbo league">KBO League</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="nippon" name="nippon" value="nippon">
+                                    <label for="nippon">Nippon Baseball</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="cuban" name="cuban" value="cuban">
+                                    <label for="cuban">Cuban National</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Football</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="nfl" name="nfl" value="nfl">
+                                    <label for="nfl">NFL</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="cfl" name="cfl" value="cfl">
+                                    <label for="cfl">CFL</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="ufl" name="ufl" value="ufl">
+                                    <label for="ufl">UFL</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Soccer</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="mls" name="mls" value="mls">
+                                    <label for="mls">MLS</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="premier league" name="premier league" value="epl">
+                                    <label for="premier league">Premier League</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="la liga" name="la liga" value="la liga">
+                                    <label for="la liga">La Liga</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="bundesliga" name="bundesliga" value="bundesliga">
+                                    <label for="bundesliga">Bundesliga</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Hockey</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="nhl" name="nhl" value="nhl">
+                                    <label for="nhl">NHL</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="ncaa hockey" name="ncaa hockey" value="ncaa hockey">
+                                    <label for="ncaa hockey">NCAA D1 Hockey</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="swedish hockey" name="swedish hockey"
+                                        value="swedish hockey">
+                                    <label for="swedish hockey">Swedish Hockey</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Fighting</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="ufc" name="ufc" value="ufc">
+                                    <label for="ufc">UFC</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="boxing" name="boxing" value="boxing">
+                                    <label for="boxing">Boxing</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="one champ" name="one champ" value="one champ">
+                                    <label for="one champ">ONE Championship</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Motorsports</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="f1" name="f1" value="f1">
+                                    <label for="f1">Formula 1</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="formula e" name="formula e" value="formula e">
+                                    <label for="formula e">Formula E</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="motogp" name="motogp" value="motogp">
+                                    <label for="motogp">MotoGP</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="indycar" name="indycar" value="indycar">
+                                    <label for="indycar">IndyCar</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="imsa sportscar" name="imsa sportscar"
+                                        value="imsa sportscar">
+                                    <label for="imsa sportscar">IMSA SportsCar</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="ferrari challenge na" name="ferrari challenge na"
+                                        value="ferrari challenge na">
+                                    <label for="ferrari challenge na">Ferrari Challenge NA</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="wec" name="wec" value="wec">
+                                    <label for="wec">WEC</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="gtwc endurance" name="gtwc endurance"
+                                        value="gtwc endurance">
+                                    <label for="gtwc endurance">GTWC Endurance</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="gtwc sprint" name="gtwc sprint" value="gtwc sprint">
+                                    <label for="gtwc sprint">GTWC Sprint</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="wrc" name="wrc" value="wrc">
+                                    <label for="wrc">WRC</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="dakar rally" name="dakar rally" value="dakar rally">
+                                    <label for="dakar rally">Dakar Rally</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="super gt" name="super gt" value="super gt">
+                                    <label for="super gt">Super GT</label>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="translate">Golf</summary>
+                            <div>
+                                <div>
+                                    <input type="checkbox" id="PGA Golf" name="PGA Golf" value="pga golf">
+                                    <label for="PGA Golf">PGA Golf</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="LIV Golf" name="LIV Golf" value="liv golf">
+                                    <label for="LIV Golf">LIV Golf</label>
+                                </div>
+                            </div>
+                        </details>
+                    </details>
+                </section>
+
+                <button id="filterGames" type="submit" accesskey="t" class="indexBtn translate">Filter</button>
+                <!-- should we add prevent default? -->
+            </form>
+
+            <button id="printCalendar" type="button" class="indexBtn no-print" onclick="window.print()"
+                aria-label="Print calendar">
+                Print Calendar
+            </button>
+
+            <!-- Could add favorite team filter once we can live update form depending on which sports/leagues the user picks. -->
+            <!-- Feel free to add other filters, I can't think of much right now -->
+        </aside>
+        <section id="calendar" aria-label="calendar">
+            <div id="days">
+                <div id="day1" class="day">
+
+                </div>
+                <div id="day2" class="day">
+
+                </div>
+                <div id="day3" class="day">
+
+                </div>
+                <div id="day4" class="day">
+
+                </div>
+                <div id="day5" class="day">
+
+                </div>
+                <div id="day6" class="day">
+
+                </div>
+                <div id="day7" class="day">
+
+                </div>
+                <div id="day8" class="day">
+
+                </div>
+                <div id="day9" class="day">
+
+                </div>
+                <div id="day10" class="day">
+
+                </div>
+                <div id="day11" class="day">
+
+                </div>
+                <div id="day12" class="day">
+
+                </div>
+                <div id="day13" class="day">
+
+                </div>
+                <div id="day14" class="day">
+
+                </div>
+                <div id="day15" class="day">
+
+                </div>
+                <div id="day16" class="day">
+
+                </div>
+                <div id="day17" class="day">
+
+                </div>
+                <div id="day18" class="day">
+
+                </div>
+                <div id="day19" class="day">
+
+                </div>
+                <div id="day20" class="day">
+
+                </div>
+                <div id="day21" class="day">
+
+                </div>
+                <div id="day22" class="day">
+
+                </div>
+                <div id="day23" class="day">
+
+                </div>
+                <div id="day24" class="day">
+
+                </div>
+                <div id="day25" class="day">
+
+                </div>
+                <div id="day26" class="day">
+
+                </div>
+                <div id="day27" class="day">
+
+                </div>
+                <div id="day28" class="day">
+
+                </div>
+                <div id="day29" class="day">
+
+                </div>
+                <div id="day30" class="day">
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/appearanceToggle.js" defer></script>
+    <script src="js/viewToggle.js" defer></script>
+    <script src="js/language.js" defer></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+</body>
+
+</html>

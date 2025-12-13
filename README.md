@@ -1,2 +1,1 @@
-# NextUp-Sports
-Sports site created for my CS 343 course
+A sports calendar using api
