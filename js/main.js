@@ -106,15 +106,6 @@ async function fetchLeagueGames(league, days = 30, shiftDate = false) {
       const spinnerId = `${league}-loading-${dayDiv.id.replace("day", "")}`;
       const div = document.getElementById(spinnerId);
       if (div) div.remove();
-      
-      dayDiv.insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="error-message">
-          <p> Could not load ${league} games for ${date}. Check your internet connection or try again later.</p>
-        <div>
-        `
-      );
     }
   }
 }
@@ -150,6 +141,56 @@ function formatDateUTC(d) {
   return `${y}-${m}-${day}`;
 }
 
+// Mapping of sport IDs to league names for API calls
+const sportToLeagueMap = {
+  'nba': 'NBA',
+  'nfl': 'NFL',
+  'nhl': 'NHL',
+  'ufc': 'UFC',
+  'f1': 'Formula 1',
+  'formula e': 'Formula E',
+  'motogp': 'MotoGP',
+  'indycar': 'IndyCar Series',
+  'imsa sportscar': 'IMSA SportsCar Championship',
+  'ferrari challenge na': 'Ferrari Challenge North America',
+  'wec': 'WEC',
+  'gtwc endurance': 'GT Series Endurance Cup',
+  'gtwc sprint': 'GT World Challenge Europe Sprint Cup',
+  'wrc': 'WRC',
+  'dakar rally': 'Dakar Rally',
+  'super gt': 'Super GT series',
+  'cfl': 'CFL',
+  'ufl': 'UFL',
+  'mls': 'American Major League Soccer',
+  'epl': 'English Premier League',
+  'la liga': 'Spanish La Liga',
+  'bundesliga': 'German Bundesliga',
+  'euroleague bb': 'Euroleague Basketball',
+  'australian nbl': 'Australian NBL',
+  'ncaa hockey': 'NCAA Division 1 Ice Hockey',
+  'swedish hockey': 'Swedish Hockey League',
+  'boxing': 'Boxing',
+  'one champ': 'ONE',
+  'mlb': 'MLB',
+  'kbo league': 'Korean KBO League',
+  'nippon': 'Nippon Baseball League',
+  'cuban': 'Cuban National Series',
+  'pga golf': 'PGA Golf',
+  'liv golf': 'LIV Golf'
+};
+
+// Fetch all selected sports and update the calendar
+async function loadSelectedSports() {
+  const savedFilters = JSON.parse(localStorage.getItem('selectedSports') || '[]');
+  
+  for (const sport of savedFilters) {
+    const leagueName = sportToLeagueMap[sport];
+    if (leagueName) {
+      await fetchLeagueGames(leagueName);
+    }
+  }
+}
+
 // Start the loading animation and fetch data
 // functions run on start up in this order
 (async function init() {
@@ -163,54 +204,17 @@ function formatDateUTC(d) {
 
   await setUpDayHeader();
 
-  //After calendar setup, check saved filters and load leagues
+  // Check saved filters and load leagues
   const savedFilters = JSON.parse(localStorage.getItem('selectedSports') || '[]');
 
-  // Set checkboxes up before fetching data, so the checkbox doesn't have 
-  //     to wait a full minute to show for later sports.
+  // Set checkboxes before fetching data
   for (const sport of savedFilters) {
     const checkbox = document.querySelector(`#favSports input[value="${sport}"]`);
     if (checkbox) checkbox.checked = true;
   }
 
-  // Fetch data for saved filters
-  // 34 Sports so far
-  for (const sport of savedFilters) {
-    if (sport === 'nba') await fetchLeagueGames('NBA');
-    else if (sport === 'nfl') await fetchLeagueGames('NFL');
-    else if (sport === 'nhl') await fetchLeagueGames('NHL');
-    else if (sport === 'ufc') await fetchLeagueGames('UFC');
-    else if (sport === 'f1') await fetchLeagueGames('Formula 1');
-    else if (sport === 'formula e') await fetchLeagueGames('Formula E');
-    else if (sport === 'motogp') await fetchLeagueGames('MotoGP');
-    else if (sport === 'indycar') await fetchLeagueGames('IndyCar Series');
-    else if (sport === 'imsa sportscar') await fetchLeagueGames('IMSA SportsCar Championship');
-    else if (sport === 'ferrari challenge na') await fetchLeagueGames('Ferrari Challenge North America');
-    else if (sport === 'wec') await fetchLeagueGames('WEC');
-    else if (sport === 'gtwc endurance') await fetchLeagueGames('GT Series Endurance Cup');
-    else if (sport === 'gtwc sprint') await fetchLeagueGames('GT World Challenge Europe Sprint Cup');
-    else if (sport === 'wrc') await fetchLeagueGames('WRC');
-    else if (sport === 'dakar rally') await fetchLeagueGames('Dakar Rally');
-    else if (sport === 'super gt') await fetchLeagueGames('Super GT series');
-    else if (sport === 'cfl') await fetchLeagueGames('CFL');
-    else if (sport === 'ufl') await fetchLeagueGames('UFL');
-    else if (sport === 'mls') await fetchLeagueGames('American Major League Soccer');
-    else if (sport === 'epl') await fetchLeagueGames('English Premier League');
-    else if (sport === 'la liga') await fetchLeagueGames('Spanish La Liga');
-    else if (sport === 'bundesliga') await fetchLeagueGames('German Bundesliga');
-    else if (sport === 'euroleague bb') await fetchLeagueGames('Euroleague Basketball');
-    else if (sport === 'australian nbl') await fetchLeagueGames('Australian NBL');
-    else if (sport === 'ncaa hockey') await fetchLeagueGames('NCAA Division 1 Ice Hockey');
-    else if (sport === 'swedish hockey') await fetchLeagueGames('Swedish Hockey League');
-    else if (sport === 'boxing') await fetchLeagueGames('Boxing');
-    else if (sport === 'one champ') await fetchLeagueGames('ONE');
-    else if (sport === 'mlb') await fetchLeagueGames('MLB');
-    else if (sport === 'kbo league') await fetchLeagueGames('Korean KBO League');
-    else if (sport === 'nippon') await fetchLeagueGames('Nippon Baseball League');
-    else if (sport === 'cuban') await fetchLeagueGames('Cuban National Series');
-    else if (sport === 'pga golf') await fetchLeagueGames('PGA Golf');
-    else if (sport === 'liv golf') await fetchLeagueGames('LIV Golf');
-  }
+  // Load the selected sports
+  await loadSelectedSports();
 })();
 
 /************************************* Handles expand day button *****************************************/
@@ -307,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sportsCheckBoxes = document.querySelectorAll('#favSports input[type="checkbox"]');
 
   sportsCheckBoxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', async (e) => {
+    checkbox.addEventListener('change', (e) => {
       const sport = e.target.value.toLowerCase();
       let selected = JSON.parse(localStorage.getItem('selectedSports') || '[]');
 
@@ -315,15 +319,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!selected.includes(sport)) selected.push(sport);
       } else {
         selected = selected.filter(s => s !== sport);
-        //removeSportGames(sport);
       }
 
       localStorage.setItem('selectedSports', JSON.stringify(selected));
     });
   });
 
+  // Handle filter button submission
+  const filterForm = document.querySelector('form');
+  if (filterForm) {
+    filterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // Clear existing games and reload based on current checkboxes
+      clearAllGames();
+      await loadSelectedSports();
+      console.log('Filters applied');
+    });
+  }
+
   // Save open/closed state of details elements (drop down menu)
-  // Select all details inside your favSports section
   const detailsList = document.querySelectorAll("#favSports details");
 
   // Restore open/closed state from localStorage
@@ -343,6 +357,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Clear all games from the calendar
+function clearAllGames() {
+  // Remove all game divs
+  const gameElements = document.querySelectorAll('.game');
+  gameElements.forEach(el => el.remove());
+
+  // Remove all loading spinners
+  const spinners = document.querySelectorAll('.day-loading');
+  spinners.forEach(el => el.remove());
+
+  // Reset tracking objects
+  Object.keys(allGamesByDate).forEach(date => delete allGamesByDate[date]);
+  Object.keys(loadedLeaguesByDate).forEach(date => delete loadedLeaguesByDate[date]);
+
+  console.log('All games cleared');
+}
+
+// Remove all games from a specific sport from the calendar
+function removeSportGames(sport) {
+  const leagueName = sportToLeagueMap[sport];
+  if (!leagueName) return;
+
+  // Find and remove all game divs with this league
+  const gameElements = document.querySelectorAll(`.game[data-league="${leagueName}"]`);
+  gameElements.forEach(el => el.remove());
+
+  // Clear from tracking objects
+  Object.keys(loadedLeaguesByDate).forEach(date => {
+    loadedLeaguesByDate[date].delete(leagueName);
+  });
+
+  // Clear from cache
+  const upcomingDays = getNextDates(30);
+  upcomingDays.forEach(({ date }) => {
+    const cacheKey = `${leagueName.toLowerCase()}_${date}`;
+    localStorage.removeItem(cacheKey);
+  });
+
+  console.log(`Removed games for ${leagueName}`);
+}
 
 function parseSportsDBTime(g) {
   // Best: strTimestamp
