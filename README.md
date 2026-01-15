@@ -48,6 +48,38 @@ The application includes trivia and calendar integration for:
 - **Print Calendar**: Print your calendar view for offline use
 
 ## Screenshots
+<p align="center"><em>Homepage (green, grid view)</em></em></p>
+<p align="center">
+  <img width="2559" height="1344" alt="Screenshot 2026-01-15 145902" src="https://github.com/user-attachments/assets/c704c1f8-9a6f-47dd-8115-b9410d24f494" />
+</p>
+
+<p align="center"><em>Homepage (green, list view)</em></em></p>
+<p align="center">
+  <img width="1791" height="1217" alt="Screenshot 2026-01-15 150101" src="https://github.com/user-attachments/assets/fd7fbb72-3e93-49b4-9b96-4d7d249c472e" />
+</p>
+
+
+<p align="center"><em>Custom background</em></em></p>
+<p align="center">
+  <img width="1791" height="1217" alt="Screenshot 2026-01-15 150155" src="https://github.com/user-attachments/assets/b2a95271-e893-4149-b5a3-8e0c4638bb36" />
+</p>
+
+<p align="center"><em>Question Minigame (blue)</em></em></p>
+<p align="center">
+  <img width="1440" height="866" alt="Screenshot 2026-01-15 150231" src="https://github.com/user-attachments/assets/0df380b9-748a-4955-b558-f456b280e549" />
+</p>
+
+
+<p align="center"><em>Day inspect (red, zoom + blur)</em></em></p>
+<p align="center">
+  <img width="871" height="1157" alt="Screenshot 2026-01-15 150324" src="https://github.com/user-attachments/assets/f7a3397f-acdf-4a1e-af5b-4c6b8da1a18b" />
+</p>
+
+
+<p align="center"><em>Settings (dark mode)</em></em></p>
+<p align="center">
+  <img width="1486" height="1020" alt="Screenshot 2026-01-15 150357" src="https://github.com/user-attachments/assets/11e54108-b0f9-46c6-aabd-88c9fd8249c8" />
+</p>
 
 ## Contributors
 
