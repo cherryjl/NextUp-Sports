@@ -87,10 +87,6 @@ The application includes trivia and calendar integration for:
 - **Thomas Givens**
 - **Morgan Wagner**
 
-## License
-
-This project is open source and available for educational purposes.
-
 ## Acknowledgments
 
 - Free sports data API for providing real-time event information
